@@ -1,5 +1,4 @@
 # belly-button-challenge
-For use with module 14 homework due 12.02
 
 ## Instructions
 ### Complete the following steps:

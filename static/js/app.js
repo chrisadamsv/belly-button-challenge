@@ -16,7 +16,7 @@ function buildMetadata(sample) {
 
     // Inside a loop, you will need to use d3 to append new
     // tags for each key-value in the filtered metadata.
-    Object.entries(filterMetadata).forEach(([key, value]) => {
+    Object.entries(filterMetadata).forEach(([key,value]) => {
     panel.append("h6").text(`${key}: ${value}`);
     });
 
@@ -57,7 +57,7 @@ function buildCharts(sample) {
     };
 
     // Render the Bubble Chart
-    Plotly.newPlot('bubble', bubbleChart, bubbleLayout);
+    Plotly.newPlot('bubble',bubbleChart,bubbleLayout);
 
     // For the Bar Chart, map the otu_ids to a list of strings for your yticks
     let mappedData = otuIDs.map((id, index) => ({
@@ -68,7 +68,7 @@ function buildCharts(sample) {
 
     // Build a Bar Chart
     // Don't forget to slice and reverse the input data appropriately
-    mappedData.sort((a, b) => b.sample_value - a.sample_value);
+    mappedData.sort((a, b) => b.sv - a.sv);
     let top10Samples = mappedData.slice(0, 10);
     top10Samples.reverse();
    
@@ -90,7 +90,7 @@ function buildCharts(sample) {
     };
 
     // Render the Bar Chart
-    Plotly.newPlot('bar', barChart, barLayout);
+    Plotly.newPlot('bar',barChart,barLayout);
 
   });
 }
@@ -109,9 +109,7 @@ function init() {
     // Hint: Inside a loop, you will need to use d3 to append a new
     // option for each sample name.
     names.forEach(name => {
-      panel.append("option")
-        .text(name)
-        .attr("value", name);
+      panel.append("option").text(name).attr("value",name);
     });
 
     // Get the first sample from the list
